@@ -1,0 +1,22 @@
+# application.yml
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+  redis:
+    host: localhost
+    port: 6379
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

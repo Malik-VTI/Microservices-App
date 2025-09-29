@@ -1,0 +1,24 @@
+# application.yml
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:sqlserver://10.100.33.68:1433;databaseName=user_db_demo
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: lek
+    password: P@ssw0rd
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServerDialect
+    hibernate:
+      ddl-auto: create-drop
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 60000
+
+jwt:
+  secret: mySecretKey
+  expiration: 86400000
