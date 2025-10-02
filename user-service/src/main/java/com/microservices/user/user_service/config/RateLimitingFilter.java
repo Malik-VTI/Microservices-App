@@ -28,8 +28,13 @@ public class RateLimitingFilter extends OncePerRequestFilter {
         String clientIp = getClientIp(request);
         String key = "rate_limit:" + clientIp;
 
-        String countStr = (String) redisTemplate.opsForValue().get(key);
-        int count = countStr != null ? Integer.parseInt(countStr) : 0;
+//        String countStr = (String) redisTemplate.opsForValue().get(key);
+        Object countObj = redisTemplate.opsForValue().get(key);
+        int count = 0;
+        if (countObj != null) {
+            count = Integer.parseInt(countObj.toString());
+        }
+//        int count = countStr != null ? Integer.parseInt(countStr) : 0;
 
         if (count >= MAX_REQUESTS_PER_MINUTE) {
             response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());

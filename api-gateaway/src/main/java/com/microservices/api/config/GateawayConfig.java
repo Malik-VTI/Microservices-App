@@ -18,7 +18,7 @@ public class GateawayConfig {
                 .route("user-service", r -> r.path("/api/users/**", "/api/auth/**")
                         .filters(f -> f.requestRateLimiter(c -> c.setRateLimiter(redisRateLimiter())
                                 .setKeyResolver(ipKeyResolver())))
-                        .uri("http://localhost:8081"))
+                        .uri("http://localhost:7070"))
                 .route("product-service", r -> r.path("/api/products/**")
                         .filters(f -> f.requestRateLimiter(c -> c.setRateLimiter(redisRateLimiter())
                                 .setKeyResolver(ipKeyResolver())))

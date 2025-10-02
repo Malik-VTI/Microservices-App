@@ -1,24 +1,36 @@
-# application.yml
 server:
-  port: 8081
+  port: 7070
 
 spring:
   application:
     name: user-service
+
+  data:
+    redis:
+      host: 10.100.34.246
+      port: 12345
+
   datasource:
-    url: jdbc:sqlserver://10.100.33.68:1433;databaseName=user_db_demo
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://10.100.33.68:1433;databaseName=user_db_demo;encrypt=true;trustServerCertificate=true
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     username: lek
     password: P@ssw0rd
+
+  jackson:
+    date-format: dd-MM-yyyy HH:mm:ss
+    time-zone: GMT+7
+    serialization:
+      write-dates-as-timestamps: false
+
   jpa:
     database-platform: org.hibernate.dialect.SQLServerDialect
     hibernate:
-      ddl-auto: create-drop
-  redis:
-    host: localhost
-    port: 6379
-    timeout: 60000
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
 jwt:
-  secret: mySecretKey
+  secret: onHxm0yleYqLUcT6289RGI8tnAYxS9EY
   expiration: 86400000

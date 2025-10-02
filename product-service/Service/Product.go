@@ -42,7 +42,7 @@ type ProductService struct {
 // Database connection
 func NewProductService() *ProductService {
 	// Database connection
-	db, err := gorm.Open(sqlserver.Open("sqlserver://lek:P@ssw0rd@10.100.33.68:1433?database=product_db_demo"), &gorm.Config{})
+	db, err := gorm.Open(sqlserver.Open("sqlserver://lek:P@ssw0rd@10.100.33.68:1433?database=product_demo_db"), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to connect to database:", err)
 	}
@@ -52,7 +52,7 @@ func NewProductService() *ProductService {
 
 	// Redis connection
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     "10.100.34.246:12345",
 		Password: "",
 		DB:       0,
 	})
