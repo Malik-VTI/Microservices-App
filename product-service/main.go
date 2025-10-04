@@ -14,21 +14,21 @@ func main() {
 	r := gin.Default()
 
 	// CORS middleware (same as before)
-	// r.Use(func(c *gin.Context) {
-	// 	c.Header("Access-Control-Allow-Origin", "*")
-	// 	c.Header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-	// 	c.Header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+	r.Use(func(c *gin.Context) {
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		c.Header("Access-Control-Allow-Headers", "Content-Type, Authorization")
 
-	// 	if c.Request.Method == "OPTIONS" {
-	// 		c.AbortWithStatus(204)
-	// 		return
-	// 	}
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
 
-	// 	c.Next()
-	// })
+		c.Next()
+	})
 
 	// Rate limiting middleware
-	// r.Use(middlewares.RateLimitMiddleware(ps))
+	r.Use(middlewares.RateLimitMiddleware(ps))
 
 	// Public routes
 	r.GET("/health", ps.HealthCheck)
